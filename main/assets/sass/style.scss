@@ -1,0 +1,16 @@
+@import './Abstracts/variables';
+@import './Abstracts/mixins';
+@import './Base/base';
+//------------>
+@import './Components/layouts';
+@import './Components/main';
+@import './Components/start';
+@import './Components/prequestionboard';
+@import './Components/end';
+@import './Components/rankboard';
+@import './Components/certificate';
+@import './Components/overview';
+//------------->
+@import './Base/typography';
+
+

@@ -1,0 +1,228 @@
+.wrapper{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    max-width: 1920px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to right,#0f0c29,#302b63,#24243e);
+    overflow: hidden;
+}
+.returnBtn{
+    @include btn; 
+    background-color: $cl-f;
+    top: 2rem;
+    left: 2rem;
+    @include respond (tab-land){
+        width: 4rem;
+        height: 4rem;
+    }
+    @include respond (tab){
+        width: 3rem;
+        height: 3rem;
+    }
+}
+.reportBtn{
+    @include btn;
+    width: auto;
+    bottom: 2rem;
+    left: 2rem;
+    color: $cl-f;
+    background-color: $cl-0;
+    justify-content: start;
+    opacity: 0.3;
+    transition: 0.3s linear;
+    overflow: hidden;
+    @include respond (tab-land){
+        i{
+            height: 4rem;
+            width: 4rem;
+        }
+    }
+    @include respond (tab){
+        i{
+            height: 3rem;
+            width: 3rem;
+        }
+    }
+    p{
+        width: 0;
+        overflow: hidden;
+        display: block;
+        transition: 0.2s ease-in;
+        visibility: hidden;
+    }
+    i{
+        width: 6rem;
+        height: 6rem;
+        background-color: $cl-0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 1rem;
+        
+    }
+    &:hover{
+        width: 16rem;
+        p{
+            width: 9rem;
+            margin-left: 1rem;
+            visibility: visible;
+        }
+        @include respond(phone){
+            width: 3rem;
+            p{
+                display: none;
+            }
+        }
+    }
+}
+
+.scoreBtn{
+    @include btn;
+    top: 2rem;
+    right: 2rem;
+    background-color: $cl-y;
+}
+
+.docBtn{
+    @include btn;
+    color: $cl-f;
+    background-color: $cl-0;
+    opacity: 0.3;
+    bottom: 10rem;
+    left: 2rem;
+    @include respond(tab-land){
+        bottom: 8rem;
+    }
+    @include respond(tab){
+        left: 6rem;
+        bottom: 2rem;
+    }
+    @include respond(phone)
+    {
+        transform: translateX(-14rem);
+    }
+}
+
+#frame{
+    cursor: pointer;
+    @include btn;
+    bottom: 10rem;
+    right: 2rem;
+    color: $cl-f;
+    background-color: $cl-0;
+    opacity: 0.3;
+    @include respond(phone)
+    {
+        transform: translateX(10rem);
+    }
+}
+
+.preQuestionBtn{
+    @include btn;
+    bottom: 2rem;
+    right: 2rem;
+    color: $cl-f;
+    background-color: $cl-0;
+    opacity: 0.3;
+    transition: 0.1s linear;
+    padding: 0.2rem;
+    overflow: hidden;
+    &:hover{
+    width: auto;
+    padding: 0 2rem;
+    }
+    @include respond(tab){
+        width: 50vw;
+    }
+    @include respond(phone)
+    {
+        width: 40vw;
+        padding: 0 0.5rem;
+    }
+}
+
+.rankBtn{
+    @include btn;
+    color: $cl-f;
+    background-color: $cl-0;
+    opacity: 0.3;
+    bottom: 18rem;
+    left: 2rem;
+    @include respond(tab-land){
+        bottom: 14rem;
+    }
+    @include respond(tab){
+        left: 6rem;
+        bottom: 2rem;
+    }
+}
+
+#preQuestionBoard__list::-webkit-scrollbar {
+    width: 0.6rem;
+    height: auto;
+    max-height: 14rem;
+    background-color: #0000001a;
+} 
+#preQuestionBoard__list::-webkit-scrollbar-thumb {
+    background-color: $cl-y;
+}
+
+.analyticBtn{
+    @include btn;
+    bottom: 2rem;
+    right: 2rem;
+    color: $cl-f;
+    background-color: $cl-0;
+    opacity: 0.3;
+    transition: 0.1s linear;
+    padding: 0.2rem;
+    overflow: hidden;
+    &:hover{
+        color: $cl-0;
+        opacity: 1;
+        background-color: $cl-y;
+    }
+    @include respond(tab){
+        width: 50vw;
+    }
+    @include respond(phone)
+    {
+        transform: translateX(14rem);
+        width: 40vw;
+        padding: 0 0.5rem;
+    }
+
+}
+
+
+.searchBtn{
+    
+    @include btn;
+    bottom: 2rem;
+    right: 2rem;
+    color: $cl-f;
+    background-color: $cl-0;
+    opacity: 0.3;
+    transition: 0.1s linear;
+    padding: 0.2rem;
+    overflow: hidden;
+    &:hover{
+        color: $cl-0;
+        opacity: 1;
+        background-color: $cl-y;
+    }
+    @include respond(tab){
+        width: 50vw;
+    }
+    @include respond(phone)
+    {
+        transform: translateX(14rem);
+        width: 40vw;
+        padding: 0 0.5rem;
+    }
+    display: none;
+}

@@ -1,0 +1,292 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Quicksand:wght@500;600;700&display=swap');
+// font-family: 'Noto Sans JP', sans-serif;
+// font-family: 'Quicksand', sans-serif;
+body{
+	font-size: 62.5%;
+	@include respond(tab-land){
+		font-size: 50%;
+	}
+	@include respond(tab){
+		font-size: 40%;
+	}
+	@include respond(phone){
+		font-size: 30%;
+	}
+}
+
+//-----------------------> BUTTON
+.returnBtn{
+    @include respond (tab){
+        font-size: 1.4rem;
+    }
+}
+.reportBtn{
+    p{
+        font-size: 1.6rem;
+    }
+}
+.scoreBtn{
+    font-weight: 700;
+    font-family: 'Quicksand',sans-serif;
+}
+.docBtn{
+    font-size: 3rem;
+}
+.preQuestionBtn{
+    font-size: 1rem;
+    line-height: 1.1rem;
+    @include respond(tab-land){
+    font-size: 0.7rem;
+    }
+    @include respond(tab){
+    font-size: 0.5rem;
+    }
+    @include respond(phone){
+    font-size: 0.36rem;
+    }
+}
+.analyticBtn{
+    font-size: 1rem;
+    line-height: 1.1rem;
+    font-weight: 500;
+    @include respond(tab-land){
+    font-size: 0.7rem;
+    }
+    @include respond(tab){
+    font-size: 0.5rem;
+    }
+    @include respond(phone){
+    font-size: 0.36rem;
+    }
+}
+.rankBtn{
+    font-size: 3rem;
+    @include respond (phone){
+        font-size: 2rem;
+    }
+}
+
+#frame{
+    font-size: 1.2rem;
+}
+//-----------------------> MAIN
+.main{
+    .container{
+        *{
+            font-size: 2.2rem;
+            @include respond(phone){
+            font-size: 1.4rem;
+            }
+        }
+        #content-box{
+            font-size: 1.4rem;
+        }
+        #number-box{
+            font-size: 1.4rem;
+        }  
+        @include respond(phone){
+            #content-box{
+                font-size: 1rem;
+            }
+            #number-box{
+                font-size: 1rem;
+            }  
+        }
+ 
+    }
+    .btn{
+        font-family: 'Quicksand', sans-serif;
+        font-size: 2rem;
+        font-weight: 700;
+    }
+}
+//-----------------------> START
+.start{
+    .content-box{
+        font-family: 'Noto Sans JP', sans-serif;
+        font-weight: 500;
+        &__quiz{
+            font-size: 3rem;
+            line-height: 4rem;
+            @include respond(tab-land){
+                font-size: 2.4rem;
+                line-height: 2.6rem;
+            }
+            @include respond(tab){
+                font-size: 1.8rem;
+            }
+            @include respond(phone){
+                font-size: 1.5rem;
+            }
+        }
+        &__options{
+            font-size: 3rem;
+            .choice-container {
+                @include respond(tab-land){
+                    font-size: 2rem;
+                }
+                @include respond(tab){
+                    font-size: 1.6rem;
+                }
+                @include respond (small-phone){
+                    font-size: 1.4rem;
+                }
+            }
+        }
+    }
+}
+#timer{
+    font-size: 2rem;
+    @include respond(phone)
+    {
+        font-size: 1.4rem;
+    }
+}
+#count{
+    font-size: 2rem;
+    @include respond(phone)
+    {
+        font-size: 1.4rem;
+    }
+}
+//-----------------------> END
+.end{
+    form{
+        *{  
+            font-size: 2rem;
+        }
+    }
+    h1{
+        font-size: 2rem;
+        font-weight: 500;
+        @include respond(phone){   
+        font-size: 3.4rem;
+        }
+    }
+    h2{
+        font-size: 2.4rem;
+        font-weight: 500;
+        @include respond(phone){
+        font-size: 2rem;
+        }
+    }
+    #saveScoreBtn{
+        font-weight: 700;
+    }
+}
+#percentCorrect{
+    font-size: 5rem;
+    font-weight: 700;
+    @include respond(phone){
+        font-size: 3.4rem;
+    }
+}
+#level{
+    font-size: 2rem;
+    font-weight: 700;
+}
+//-----------------------> LIB
+.preQuestionBoard{
+    h3{
+        font-family: 'Quicksand', sans-serif;
+        font-size: 3rem;
+        line-height: 3.1;
+        text-transform: uppercase;
+        @include respond(tab){
+            font-size: 2rem;
+            line-height: 2.1;
+        }
+        @include respond(phone){
+            display: none;
+        }
+    }
+    &__list{
+            li{
+                font-family: 'Noto Sans JP', sans-serif;
+                font-weight: 500;
+                font-size: 2rem;
+                line-height: 2.1rem;
+                @include respond(tab){
+                    font-size: 1.4rem;
+                    line-height: 1.5;
+                }
+            }
+    }
+}
+//-----------------------> RANK
+.rankBoard{
+    h3{
+        font-family: 'Quicksand', sans-serif;
+        font-size: 3rem;
+        line-height: 3.1;
+        text-transform: uppercase;
+        @include respond(tab){
+            font-size: 1.4rem;
+            line-height: 1.5;
+        }
+    }
+
+    &__list{
+        li{
+            font-size: 1.8rem;
+            .point{
+                font-size: 1.6rem;
+                font-weight: 500;
+            }
+            .level{
+                font-size: 1rem;
+            }
+            .percent{
+                font-weight: 700;
+            }
+            @include respond(phone){
+                .level{
+                    font-size: 0.8rem;
+                }
+                .point{
+                    font-size: 1rem;
+                }
+                .percent{
+                    font-size: 1rem;
+                }
+                .timeToDone{
+                    font-size: 1rem;
+                }
+                .time{
+                    font-size: 1rem;
+                }
+                .name{
+                    font-size: 1rem;
+                }
+            }
+        }
+    }
+}
+//----------------------->CERTIFICATE
+.certificate{
+    .heading{
+        font-size: 3.4rem;
+        p{
+            font-size: 2rem;
+        }
+        .level-box{
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        .name-box{
+            .o_name{
+                font-size: 1.4rem;
+            }
+        }
+    }
+    .row{
+        .col-r{
+            ul{
+                li{
+                    font-size: 1.2rem;
+                    font-weight: 500;
+                }
+            }
+        }
+    }
+}

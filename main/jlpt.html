@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    <link rel="icon" type="image/png" href="./assets/images/raccoon.png"/>
+    <link rel="stylesheet" href="./assets/sass/style.css">
+    <title>JLPT Quiz</title>
+</head>
+<body>
+    <div class="wrapper" id="wrapper">
+<!-------------------------------------------BUTTON------------------------------------------->
+        <div class="returnBtn" id="returnBtn"><i class="fas fa-undo-alt"></i></div>
+        <div class="scoreBtn" id="score">0</div>
+        <div class="preQuestionBtn" id="preQuestionBtn"></div>
+        <a href="https://forms.gle/PJ5ib4EdRPYoewSE7" target="_blank" onclick="playAudio('./assets/audio/pop.wav')"><div class="reportBtn"><i class="fas fa-exclamation"></i><p>Báo lỗi</p></div></a>
+        <a href="https://github.com/sangcamap/JLPT-quiz" target="_blank" onclick="playAudio('./assets/audio/pop.wav')"><div class="docBtn" id="docBtn"><i class="fab fa-github-alt"></i></div></a>
+        <div class="rankBtn" id="rankBtn"><i class="fas fa-trophy"></i></div>
+        <div class="analyticBtn" id="analyticBtn">Phân tích</div>
+        <div class="frameBtn" id="frame">Theme</div>
+        <div class="searchBtn" id="searchBtn"><i class="fas fa-search"></i></div>
+<!---------------------------------------------MAIN------------------------------------------->
+        <div class="main" id="main">
+
+            <div class="container">
+                    <div id="content-box">Full</div>
+                    <input type="number" placeholder="Số lượng" id="number-box">
+            </div>
+            <button class="btn startBtn"><i class="fas fa-play"></i></button>
+            <button class="btn preQuestionBoardBtn"><i class="fas fa-university"></i></button>
+            <div id="choiceContentBoard">
+                <span id="closeBtn">X</span>
+                <div class="All-list">
+                    <h5>自由</h5>
+                    <ul>
+                        <li id="allFull">Full</li>
+                        <li id="allN3">N3</li>
+                        <li id="allN4">N4</li>
+                    </ul>
+                </div>
+                <div class="kanji-list">
+                    <h5>漢字</h5>
+                    <ul>
+                        <li id="kanjiN3">N3</li>
+                        <li id="kanjiN4">N4</li>
+                        <!-- <li id="kanjiN5">N5</li> -->
+                    </ul>
+                </div>
+                <div class="Bunpou-list">
+                    <h5> 文法</h5>
+                    <ul>
+                        <li id="bunpouN3">N3</li>
+                        <li id="bunpouN4">N4</li>
+                        <!-- <li id="bunpouN5">N5</li> -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+<!--------------------------------------------START------------------------------------------->
+        <div class="start" id="start">
+            <div class="content-box">
+                <div class="content-box__quiz">
+                    <div class= "timer" id = "timer"><label id="hours">00</label>:<label id="minutes">00</label>:<label id="seconds">00</label></div>
+                    <div class="count" id ="count">00/00</div>
+                    <h5 id="question">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente dicta dignissimos aperiam, similique, enim corrupti officiis iste perferendis est facilis facere et sit aspernatur quos incidunt placeat deserunt fuga illum?</h5>
+                </div>
+                <div class="content-box__options">
+                    <div class="choice-container" onclick="playAudio('./assets/audio/pop.wav')">
+                        <p class="choice-text" data-number="1">Choice</p>
+                    </div>
+                    <div class="choice-container" onclick="playAudio('./assets/audio/pop.wav')">
+                        <p class="choice-text" data-number="2">Choice 2</p>
+                    </div>
+                    <div class="choice-container" onclick="playAudio('./assets/audio/pop.wav')">
+                        <p class="choice-text" data-number="3">Choice 3</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+<!---------------------------------------------END-------------------------------------------->
+        <div class="end" id ="end">
+            <h1 id="level">Tự do</h1>
+            <h1 id="percentCorrect">0%</h1>
+            <h1 id="finalScore">0</h1>
+            <img src="./assets/images/gif-1.gif" alt="" id="gif">
+            <h2 id="end-text">comment</h2>
+            <form class="end-form-container">
+                <input type="text" name="name" id="username" placeholder="Tên bạn là">
+                <!-- <button class="btn" onclick="saveHighScore(event); " id="saveScoreBtn" type="submit"  disabled>Lưu</button> -->
+                <div class="btn" id="saveScoreBtn">Lưu</div>
+            </form>
+        </div>
+
+<!---------------------------------------------LIB-------------------------------------------->
+        <div class="preQuestionBoard" id="preQuestionBoard">
+                <h3>Danh sách câu hỏi trước đó</h3>
+                <ul class="preQuestionBoard__list" id="preQuestionBoard__list">
+                    <!-- ----chèn list----- -->
+                </ul>
+        </div>
+<!---------------------------------------------RANK-------------------------------------------->
+        <div class="rankBoard" id="rankBoard">
+                <h3>Bảng phong thần</h3>
+                <div class="listBtn">
+                    <div class="rankAllBtn btn">自由</div>
+                    <div class="rankKanjiN3Btn btn">漢字N3</div>
+                    <div class="rankKanjiN4Btn btn">漢字N4</div>
+                    <!-- <div class="rankBunpouAllBtn btn">N2</div> -->
+                    <div class="rankBunpouN3Btn btn">文法N3</div>
+                    <div class="rankBunpouN4Btn btn">文法N4</div>
+                </div>
+                <ul class="rankBoard__list" id="rankList">
+                    <!-- ----chèn list----- -->
+                    <li class="overview"><span class="id"></span></li>
+                </ul>
+        </div>
+<!-----------------------------------------CERTIFICATE------------------------------------------>
+        <div class="certificate" id ="certificate">
+            <div class="heading">
+                <div class="level-box">Tự do</div>
+                <div class="name-box"><p>Tên</p><div class="o_name">USERNAME</div></div>
+                <div class="time-box"><p>Thời gian hoàn thành</p><div class="o_time">00:00:00</div></div>
+                <div class="score-box"><p>Điểm</p><div class="o_score"></div></div>
+            </div>
+            <div class="row">
+                <div class="col-l">
+                    <canvas id="chart"></canvas>
+                </div>
+                <div class="col-r">
+                    <ul class="o_list">
+                        <!--chèn list -->
+                    </ul>
+                </div>
+            </div>
+
+        </div>        
+<!-----------------------------------------overview------------------------------------------>
+        <div class="overview-question" id="overview-question">
+            <span class="overview-question__close">X</span>
+            <div class="overview-question__box">
+                <div class="overview-question__box--left"></div>
+                <div class="overview-question__box--right"></div>
+            </div>
+        </div>
+</div>
+<!----------------------------------------------SCRIPT------------------------------------------>
+<script src="./firebase.js" type="module"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="./data-n3.js"></script>
+<script src="./data-n4.js"></script>
+<script src="./app.js" defer></script>
+</body>
+</html>
