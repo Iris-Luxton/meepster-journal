@@ -1,0 +1,8 @@
+.content-link {
+    color: black;
+    display: flex;
+    text-align: left;
+    margin-left: 48%;
+    display: inline;
+    padding: 0;
+  }
