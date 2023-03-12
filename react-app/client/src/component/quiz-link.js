@@ -1,19 +1,18 @@
 import React from 'react';
 import './styles/static-resource.css';
 import { Link } from 'react-router-dom';
-function Resources() {
+function Quizlink() {
   return (
       <div>
-        <p>Resources</p>
       <ul className="content-link">
       <li>
-          <Link className="content-link" to="/static/jvocab">Japanese Vocab</Link>
+          <Link className="content-link" to="/quiz/jquiz">Japanese Quiz</Link>
         </li>
         <li>
-          <Link className="content-link" to="/static/cvocab">Chinese Vocab</Link>
+          <Link className="content-link" to="/quiz/cquiz">Chinese Quiz</Link>
         </li>
       </ul>
       </div>
   );
 }
-export default Resources;
+export default Quizlink;

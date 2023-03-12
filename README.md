@@ -1,9 +1,8 @@
 # meepster-journal
-This is my capstone project for AUT that I will expand indefinitely.
+Welcome to Meepster Journal!
+This site is still under development but upgrade is underway
 You can check out my profile at https://iris-luxton.github.io/    
-Meepster journal is my learning diary and will start with a quiz function
-
-
+Meepster journal is my learning diary with simple features 
 
 
 

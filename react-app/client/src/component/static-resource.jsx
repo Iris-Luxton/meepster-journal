@@ -1,9 +1,8 @@
 import React from 'react';
 import Jvocab from './resources/japanese-vocab.jsx';
 import Cvocab from './resources/chinese-vocab.jsx';
-
 import Resources from './resources';
-import './static-resource.css';
+import './styles/static-resource.css';
 import { Route, Routes } from 'react-router-dom';
 
 function StaticResource () {

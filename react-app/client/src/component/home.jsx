@@ -1,5 +1,5 @@
 import React from 'react';
-import './home.css';
+import './styles/home.css';
 import Welcome from '../image/welcome.png';
 
 function Home() {
