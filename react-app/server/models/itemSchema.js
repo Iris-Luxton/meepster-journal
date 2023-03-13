@@ -1,13 +1,13 @@
 import mongoose from "mongoose";
 const { Schema } = mongoose;
 
-/** user model */
-const userModel = new Schema({
-    username: { 
+/** item model */
+const itemModel = new Schema({
+    itemname: { 
         type : String, 
         required: true,
         unique: true,
     },
 });
 
-export default mongoose.model('User', userModel);
+export default mongoose.model('item', itemModel);

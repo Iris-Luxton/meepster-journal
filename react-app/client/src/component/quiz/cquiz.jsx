@@ -1,17 +1,17 @@
 import React, {useState, useEffect} from 'react';
 import './quiz.css';
 
-const getUsers = async () => {
-  const resp = await fetch('http://localhost:5000/api/quiz/users')
-  const users = await resp.json();
-  return users
+const getItems = async () => {
+  const resp = await fetch('http://localhost:5000/api/quiz/items')
+  const items = await resp.json();
+  return items
 }
 
 function Cquiz() {
-  const [users, setUsers] = useState([]);
+  const [items, setItems] = useState([]);
 
   useEffect(() => {
-    getUsers().then((users) => setUsers(users))
+    getItems().then((items) => setItems(items))
   }, [])
 
   const submitVocab = (event) => {
@@ -21,10 +21,10 @@ function Cquiz() {
       console.log(`submitting vocab ${vocab}`)
     
       const submitVocab = async () => {
-        const resp = await fetch('http://localhost:5000/api/quiz/users', {
+        const resp = await fetch('http://localhost:5000/api/quiz/items', {
           method: 'POST',
           body: JSON.stringify({
-            username: vocab
+            itemname: vocab
           }),
           headers: {
             "content-type": "application/json"
@@ -45,12 +45,11 @@ function Cquiz() {
     <div>
       <div>
         <h3>Chinese Quiz</h3>
+        <h3>Note: data add attempt back end</h3>
         <ul className="content">
           <li>你好 (nǐ hǎo) - Hello</li>
-          <li>再见 (zàijiàn) - Goodbye</li>
-          <li>谢谢 (xièxie) - Thank you</li>
-          {users && users.map((user) => {
-            return <li key={user._id}>{user.username}</li>
+          {items && items.map((item) => {
+            return <li key={item._id}>{item.itemname}</li>
           })}
         </ul>
       </div>
