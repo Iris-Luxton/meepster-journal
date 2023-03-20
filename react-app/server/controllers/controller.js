@@ -1,5 +1,6 @@
 import Questions from "../models/questionSchema.js";
 import Item from "../models/itemSchema.js";
+import Tango from "../models/tangoSchema.js";
 
 // if you want to display that item only
 export async function getItems(req, res){
@@ -17,7 +18,14 @@ export async function getItems(req, res){
         res.json(error)
     }
 }
-
+export async function getTango (req, res) {
+    try {
+      const tango = await Tango.find();
+      res.json(tango);
+    } catch (err) {
+      res.status(500).json({ message: err.message });
+    }
+  };
 // simply create new record for that item
 export async function insertItems(req, res){
     console.log(req);
@@ -25,6 +33,20 @@ export async function insertItems(req, res){
     console.log({ itemname });
     const result = await Item.create({ itemname });
     res.json(result);
+}
+export async function insertTango(req, res){
+    const { word, romaji, meaning } = req.body;
+  try {
+    const newTango = await Tango.create({
+      word: word,
+      romaji: romaji,
+      meaning: meaning
+    });
+
+    res.status(201).json({ message: 'Tango created successfully', tango: newTango });
+  } catch (err) {
+    res.status(500).json({ message: 'Error creating tango', error: err });
+  }
 }
 
 export async function dropItems(req, res){
@@ -43,7 +65,18 @@ export async function dropItems(req, res){
          res.json({ error })
     }
  }
- 
+ export async function dropTango (req, res) {
+    const id = req.params._id;
+    try {
+      const result = await Tango.findByIdAndDelete(id);
+      if (!result) {
+        return res.status(404).json({ message: 'Tango entry not found' });
+      }
+      res.json(result);
+    } catch (err) {
+      res.status(500).json({ message: err.message });
+    }
+  };
 // .delete(controller.dropitems)
 /** get all questions */
 export async function getQuestions(req, res){

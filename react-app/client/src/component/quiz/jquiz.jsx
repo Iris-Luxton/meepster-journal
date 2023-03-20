@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import './quiz.css';
 
 const tango = [
@@ -8,11 +9,12 @@ const tango = [
 ]
 
 const Row = (props) => {
-  const {word, romaji, meaning} = props
+  const {word, romaji, meaning, action} = props
   return (<tr>
     <td style={{border: '1px solid black', padding: '8px'}}>{word}</td>
     <td style={{border: '1px solid black', padding: '8px'}}>{romaji}</td>
     <td style={{border: '1px solid black', padding: '8px'}}>{meaning}</td>
+    <td style={{border: '1px solid black', padding: '8px'}}><button>Edit</button><button>Delete</button></td>
   </tr>
   )
 }
@@ -21,25 +23,28 @@ const Table = (props) => {
   const [inputarr] = useState([]);
   const {data} = props
 
-  
   return (
   <table>
-    <tbody key="tbody" style={{border: '1px solid black'}}>
-      {data.map(row => 
-        <Row word = {row.word}
-        romaji = {row.romaji}
-        meaning = {row.meaning} />
-      )}
+    <thead> 
     <tr>
         {/* <td>Sr.No</td> */}
         <th>Word </th>
         <th>Romaji</th>
         <th>Meaning</th>
+        <th>Action</th> 
         {/* <th>Options</th> */}
     </tr>
+    </thead> 
+    <tbody key="tbody" style={{border: '1px solid black'}}>
+      {data.map(row => 
+        <Row word = {row.word}
+        romaji = {row.romaji}
+        meaning = {row.meaning}
+        action = {row.action} />
+      )}
+    
     {inputarr.length < 1 ?
-        <tr>
-            
+        <tr>    
         </tr>:
     inputarr.map((info, ind) => {
         return (
@@ -48,7 +53,11 @@ const Table = (props) => {
                 <td>{info.word}</td>
                 <td>{info.romaji}</td>
                 <td>{info.meaning}</td>
+                <td>
+                  <button>Delete</button>
+                </td>
                 {/* <td><button onClick={()=>delethandle(ind)}>Delete</button></td> */}
+               
             </tr>
         )
     })
@@ -57,13 +66,22 @@ const Table = (props) => {
   </table>)
 }
 function Jquiz() {
-  const [inputarr] = useState([])
+ 
   const [inputdata, SetInputdata] = useState({
     word:"",
     romaji:"",
     meaning:""
   })
-  
+  const [rows, setRows] = useState([])
+
+  useEffect(() => {
+    axios.get('http://localhost:5000/api/quiz/jquiz')
+      .then(res => {
+        setRows(res.data);
+      })
+      .catch(err => console.log(err));
+  }, []);
+
   function changehandle(e) {
     SetInputdata({...inputdata, [e.target.name]:e.target.value})
   }
@@ -72,39 +90,42 @@ function Jquiz() {
   
   function changhandle() {
     const newRow = { word, romaji, meaning }
-    const updatedRows = [...rows, newRow]
-    setRows(updatedRows)
+    axios.post('http://localhost:5000/api/quiz/jquiz', newRow)
     
-    console.log(inputdata, "input data what we Enter")
-    SetInputdata({word:"", romaji:"", meaning:""})
+    .then(res => {
+      const updatedRows = [...rows, newRow];
+      setRows(updatedRows);
+      console.log(inputdata, "input data what we Enter")
+      SetInputdata({word:"", romaji:"", meaning:""});
+    })
+    .catch(err => console.log(err));
   }
 
-
-function changhandle2() {
-  console.log("Object store in array", inputarr);
-}
-
-  const [rows, setRows] = useState(tango)
+  function dropTango(id, e) {  
+    axios.delete(`http://localhost:5000/api/quiz/jquiz/${id}`)  
+    .then(res => {  
+      console.log(res);  
+      console.log(res.data);  
+      const tangos = this.state.tangos.filter(item => item.id !== id);  
+      this.setState({ tangos });  
+})
+  }
+  
   return (
   <div className="Jquiz">
       <div>
         <h3>Japanese to be quized </h3>
-        <h3>Note: data add using front end only</h3>
+        <h3>Attempt to use Axios to handle request</h3>
         <Table data = {rows} />
       </div>
       <div>
         <input type="text" name='word' value={inputdata.word} onChange={changehandle} placeholder="Enter word"></input>
         <input type="text" name='romaji' value={inputdata.romaji} onChange={changehandle} placeholder="Enter romaji"></input>
         <input type="text" name='meaning' value={inputdata.meaning} onChange={changehandle} placeholder="Enter meaning"></input>
+        <br />
         <button onClick={changhandle}>Add It </button>
-        <button onClick={changhandle2}>Check</button> 
       </div>
    </div>
-    
   );
 }
-
-
-
-
 export default Jquiz;
