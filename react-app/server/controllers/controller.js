@@ -21,6 +21,7 @@ export async function getItems(req, res){
 export async function getTango (req, res) {
     try {
       const tango = await Tango.find();
+      console.log(tango[0]._id)
       res.json(tango);
     } catch (err) {
       res.status(500).json({ message: err.message });
@@ -48,7 +49,23 @@ export async function insertTango(req, res){
     res.status(500).json({ message: 'Error creating tango', error: err });
   }
 }
-
+export async function updateTangoById (req, res) {
+    try {
+      const tango = await Tango.findById(req.params.id);
+      if (tango) {
+        tango.word = req.body.word;
+        tango.romaji = req.body.romaji;
+        tango.meaning = req.body.meaning;
+  
+        const updatedTango = await quiz.save();
+        res.status(200).json(updatedTango);
+      } else {
+        res.status(404).json({ message: 'Quiz not found' });
+      }
+    } catch (err) {
+      res.status(400).json({ message: err.message });
+    }
+  };
 export async function dropItems(req, res){
 
     const itemname = req.body.itemname;
@@ -65,8 +82,10 @@ export async function dropItems(req, res){
          res.json({ error })
     }
  }
- export async function dropTango (req, res) {
-    const id = req.params._id;
+ export async function dropTango(req, res) {
+    const id = req.body._id;
+    console.log(`Deleting Tango with id ${id}`);
+    console.log(id);
     try {
       const result = await Tango.findByIdAndDelete(id);
       if (!result) {
@@ -74,10 +93,11 @@ export async function dropItems(req, res){
       }
       res.json(result);
     } catch (err) {
+      console.error(err);
       res.status(500).json({ message: err.message });
     }
-  };
-// .delete(controller.dropitems)
+ }
+
 /** get all questions */
 export async function getQuestions(req, res){
     try {

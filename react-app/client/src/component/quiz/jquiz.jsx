@@ -9,12 +9,26 @@ const tango = [
 ]
 
 const Row = (props) => {
-  const {word, romaji, meaning, action} = props
+  
+  const {word, romaji, meaning, _id} = props
+  const dropTango = () => {
+    axios.post('http://localhost:5000/api/quiz/jquiz/:id',{ _id })
+      .then(res => {
+        console.log(res);
+        console.log(res.data);
+        // update the state to remove the deleted tango from the rows
+      })
+      .catch(err => console.log(err));
+  }
+  
   return (<tr>
     <td style={{border: '1px solid black', padding: '8px'}}>{word}</td>
     <td style={{border: '1px solid black', padding: '8px'}}>{romaji}</td>
     <td style={{border: '1px solid black', padding: '8px'}}>{meaning}</td>
-    <td style={{border: '1px solid black', padding: '8px'}}><button>Edit</button><button>Delete</button></td>
+    <td style={{border: '1px solid black', padding: '8px'}}>
+      <button>Edit</button>
+      <button onClick={dropTango}>Delete</button>
+    </td>
   </tr>
   )
 }
@@ -68,9 +82,11 @@ const Table = (props) => {
 function Jquiz() {
  
   const [inputdata, SetInputdata] = useState({
+    _id: "",
     word:"",
     romaji:"",
     meaning:""
+    
   })
   const [rows, setRows] = useState([])
 
@@ -101,15 +117,7 @@ function Jquiz() {
     .catch(err => console.log(err));
   }
 
-  function dropTango(id, e) {  
-    axios.delete(`http://localhost:5000/api/quiz/jquiz/${id}`)  
-    .then(res => {  
-      console.log(res);  
-      console.log(res.data);  
-      const tangos = this.state.tangos.filter(item => item.id !== id);  
-      this.setState({ tangos });  
-})
-  }
+  
   
   return (
   <div className="Jquiz">
