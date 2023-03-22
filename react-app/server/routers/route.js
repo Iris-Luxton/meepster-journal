@@ -13,8 +13,10 @@ router.route('/quiz/items')
 router.route('/quiz/jquiz')
         .get(controller.getTango) /** GET Request */
         .post(controller.insertTango) /** POST Request */
-router.route('/quiz/jquiz/:id')
-        .post(controller.dropTango) /** DELETE Request */
+router.route('/quiz/delete/:id')
+        .delete(controller.dropTango) /** DELETE Request */
+router.route('/quiz/update/:id')
+        .put(controller.updateTango)
 /** Questions Routes API */
 
 router.route('/quiz/questions')

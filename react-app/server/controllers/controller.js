@@ -49,23 +49,24 @@ export async function insertTango(req, res){
     res.status(500).json({ message: 'Error creating tango', error: err });
   }
 }
-export async function updateTangoById (req, res) {
+export async function updateTango (req, res) {
+    const newWord = req.body.newWord;
+    const newRomaji = req.body.newRomaji;
+    const newMeaning = req.body.newMeaning;
+    const id = req.body.id;
     try {
-      const tango = await Tango.findById(req.params.id);
-      if (tango) {
-        tango.word = req.body.word;
-        tango.romaji = req.body.romaji;
-        tango.meaning = req.body.meaning;
-  
-        const updatedTango = await quiz.save();
-        res.status(200).json(updatedTango);
-      } else {
-        res.status(404).json({ message: 'Quiz not found' });
-      }
-    } catch (err) {
+      await Tango.findById(id, (error, tangoToUpdate) => {
+        tangoToUpdate.word = newWord;
+        tangoToUpdate.romaji = newRomaji;
+        tangoToUpdate.meaning = newMeaning;
+        tangoToUpdate.save()
+      });
+      } catch (err) {
       res.status(400).json({ message: err.message });
-    }
-  };
+      }
+      res.send("updated");
+    };
+    
 export async function dropItems(req, res){
 
     const itemname = req.body.itemname;
@@ -82,12 +83,13 @@ export async function dropItems(req, res){
          res.json({ error })
     }
  }
+
  export async function dropTango(req, res) {
-    const id = req.body._id;
-    console.log(`Deleting Tango with id ${id}`);
+    const id = req.params.id;
     console.log(id);
     try {
-      const result = await Tango.findByIdAndDelete(id);
+      const result = await Tango.findByIdAndRemove(id).exec();
+      console.log(`Deleting Tango with id ${id}`);
       if (!result) {
         return res.status(404).json({ message: 'Tango entry not found' });
       }
