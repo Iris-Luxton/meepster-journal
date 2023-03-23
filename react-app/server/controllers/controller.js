@@ -21,7 +21,7 @@ export async function getItems(req, res){
 export async function getTango (req, res) {
     try {
       const tango = await Tango.find();
-      console.log(tango[0]._id)
+      // console.log(tango[0]._id)
       res.json(tango);
     } catch (err) {
       res.status(500).json({ message: err.message });
@@ -50,21 +50,22 @@ export async function insertTango(req, res){
   }
 }
 export async function updateTango (req, res) {
-    const newWord = req.body.newWord;
-    const newRomaji = req.body.newRomaji;
-    const newMeaning = req.body.newMeaning;
+    console.log(req.body)
+    const newWord = req.body.updatedRow.word;
+    const newRomaji = req.body.updatedRow.romaji;
+    const newMeaning = req.body.updatedRow.meaning;
     const id = req.body.id;
     try {
-      await Tango.findById(id, (error, tangoToUpdate) => {
-        tangoToUpdate.word = newWord;
-        tangoToUpdate.romaji = newRomaji;
-        tangoToUpdate.meaning = newMeaning;
-        tangoToUpdate.save()
-      });
+        var doc = await Tango.findById (id);
+        doc.word = newWord;
+        doc.romaji = newRomaji;
+        doc.meaning = newMeaning;
+        console.log(doc);
+        doc.save();
       } catch (err) {
       res.status(400).json({ message: err.message });
       }
-      res.send("updated");
+      res.send(doc);
     };
     
 export async function dropItems(req, res){
@@ -85,8 +86,8 @@ export async function dropItems(req, res){
  }
 
  export async function dropTango(req, res) {
-    const id = req.params.id;
-    console.log(id);
+    const id = req.body.id;
+    console.log(req.body);
     try {
       const result = await Tango.findByIdAndRemove(id).exec();
       console.log(`Deleting Tango with id ${id}`);

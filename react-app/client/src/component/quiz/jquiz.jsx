@@ -8,7 +8,6 @@ const tango = [
   {word: "ありがとう", romaji: "arigatou", meaning: "Thank you"}
 ]
 
-
 const Table = (props) => {
   const { data } = props;
   const [rows, setRows] = useState(data);
@@ -20,7 +19,9 @@ const Table = (props) => {
   const handleDeleteRow = (id) => {
     console.log(id); // check if id is passed correctly
     axios
-      .delete(`http://localhost:5000/quiz/delete/${id}`)
+      .post('http://localhost:5000/api/quiz/delete', { 
+        id: id, 
+      })
       .then((res) => {
         console.log(res);
         console.log(res.data);
@@ -31,7 +32,9 @@ const Table = (props) => {
 
   const handleEditRow = (id, updatedRow) => {
     axios
-      .put(`http://localhost:5000/quiz/update/${id}`, updatedRow)
+    .post('http://localhost:5000/api/quiz/update', { 
+      id: id,
+      updatedRow })
       .then((res) => {
         console.log(res);
         console.log(res.data);
