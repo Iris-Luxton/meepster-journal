@@ -8,6 +8,14 @@ function NavBar() {
       <div className="logo-container">
         <img src={Logo} alt="Logo" />
       </div>
+      <ul>
+        <li>
+          <a href="/login">Login</a>
+        </li>
+        <li>
+          <a href="/register">Register</a>
+        </li>
+      </ul>
       <div className="text-container">
         <p>Meepster Journal</p>
       </div>

@@ -2,12 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './quiz.css';
 
-const tango = [
-  {word: "こんにちは", romaji: "konnichiwa", meaning: "Hello"},
-  {word: "さようなら", romaji: "sayounara", meaning: "Goodbye"},
-  {word: "ありがとう", romaji: "arigatou", meaning: "Thank you"}
-]
-
 const Table = (props) => {
   const { data } = props;
   const [rows, setRows] = useState(data);

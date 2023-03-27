@@ -9,6 +9,8 @@ import Cvocab from './component/resources/chinese-vocab.jsx';
 import './App.css';
 import Cquiz from './component/quiz/cquiz';
 import Jquiz from './component/quiz/jquiz';
+import Login from './component/login';
+import Register from './component/register';
 
 function App() {
   return (
@@ -16,7 +18,9 @@ function App() {
       <div className="App">
         <NavBar />
         <Routes>
-          <Route exact path="/" element={<Home />} />    
+          <Route exact path="/" element={<Home />} /> 
+          <Route path='/login' element={<Login />} /> 
+          <Route path='/register' element={<Register />} />   
           <Route path="/static/*" element={<StaticResource />} />
           <Route path="/static/jvocab" element={<Jvocab />} />
           <Route path="/static/cvocab" element={<Cvocab />} />

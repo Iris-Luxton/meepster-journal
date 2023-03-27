@@ -18,6 +18,28 @@ export async function getItems(req, res){
         res.json(error)
     }
 }
+export async function insertItems(req, res){
+    console.log(req);
+    const itemname = req.body.itemname;
+    console.log({ itemname });
+    const result = await Item.create({ itemname });
+    res.json(result);
+}
+export async function dropItems(req, res){
+    const itemname = req.body.itemname;
+    try {
+         const item = await Item.findOne({ itemname: itemname });
+         if (item) {
+            const itemId = item._id;
+            await Item.findByIdAndDelete(itemId);
+            res.json({ msg: `item with itemname ${itemname} deleted successfully` });
+         } else {
+            res.status(404).json({ msg: "item not found" });
+         }
+    } catch (error) {
+         res.json({ error })
+    }
+ }
 export async function getTango (req, res) {
     try {
       const tango = await Tango.find();
@@ -28,13 +50,6 @@ export async function getTango (req, res) {
     }
   };
 // simply create new record for that item
-export async function insertItems(req, res){
-    console.log(req);
-    const itemname = req.body.itemname;
-    console.log({ itemname });
-    const result = await Item.create({ itemname });
-    res.json(result);
-}
 export async function insertTango(req, res){
     const { word, romaji, meaning } = req.body;
   try {
@@ -67,24 +82,6 @@ export async function updateTango (req, res) {
       }
       res.send(doc);
     };
-    
-export async function dropItems(req, res){
-
-    const itemname = req.body.itemname;
-    try {
-         const item = await Item.findOne({ itemname: itemname });
-         if (item) {
-            const itemId = item._id;
-            await Item.findByIdAndDelete(itemId);
-            res.json({ msg: `item with itemname ${itemname} deleted successfully` });
-         } else {
-            res.status(404).json({ msg: "item not found" });
-         }
-    } catch (error) {
-         res.json({ error })
-    }
- }
-
  export async function dropTango(req, res) {
     const id = req.body.id;
     console.log(req.body);
@@ -100,7 +97,6 @@ export async function dropItems(req, res){
       res.status(500).json({ message: err.message });
     }
  }
-
 /** get all questions */
 export async function getQuestions(req, res){
     try {
@@ -110,7 +106,6 @@ export async function getQuestions(req, res){
         res.json({ error })
     }
 }
-
 /** insert all questinos */
 export async function insertQuestions(req, res){
     // try {
@@ -128,7 +123,6 @@ export async function insertQuestions(req, res){
     const result = await Questions.create({question, options});
     res.json(result);
 }
-
 /** Delete all Questions */
 export async function dropQuestions(req, res){
    try {

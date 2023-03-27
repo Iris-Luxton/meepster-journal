@@ -10,24 +10,16 @@ nav {
   
   .logo-container {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: left;
     width: 200px; /* adjust width of logo container as needed */
   }
   
   .logo-container img {
     width: 40%; /* make sure logo image fits inside its container */
   }
-  .text-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: 130px;
-  }
   .text-container p {
     margin: 0;
     font-size: 50px; 
-    
   }
   ul {
     display: flex;
@@ -35,9 +27,8 @@ nav {
     margin: 0;
     padding: 0;
   }
-  
   li {
-    margin-right: 50px;
+    margin-right: 12em;
   }
   
   a {
