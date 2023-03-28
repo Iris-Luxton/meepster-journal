@@ -1,31 +1,31 @@
 
 import React, { useState } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
+import { useSignup } from "../hooks/useSignup";
 import './styles/registerForm.css';
 import { Link } from 'react-router-dom';
 
 const RegisterForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+  const {signup, error, isLoading} = useSignup();
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
   };
-
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
   };
-
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const userData = {
-      email,
-      password,
-    };
+    // const userData = {
+    //   email,
+    //   password,
+    // };
 
-    const response = await axios.post('http://localhost:5000/api/register', userData);
-    console.log(response.data);
+    // const response = await axios.post('http://localhost:5000/api/register', userData);
+    // console.log(response.data);
+    await signup(email, password)
   };
 
   return (
@@ -39,8 +39,11 @@ const RegisterForm = () => {
         <div className="form-field">
           <label htmlFor="password">Password:</label>
           <input className="input-field-password" type="password" id="password" value={password} onChange={handlePasswordChange} />
-        </div><br /><br />
-        <button type="submit">Register</button>
+          <h6>At least 8 characters, 1 lower case, 1 uppercase, 1 number, 1 symbol</h6>
+        </div><br /><br /><br /><br />
+        <button disabled={isLoading} type="submit">Register</button>
+        
+        {error && <div className="error">{error}</div>}
       </form>
       <p>
           Already have an account?{' '}

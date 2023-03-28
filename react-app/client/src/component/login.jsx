@@ -1,23 +1,27 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { useLogin } from '../hooks/useLogin';
+// import axios from 'axios';
 import './styles/loginForm.css';
 import { Link } from 'react-router-dom';
 
 const Login = ({ setToken }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+//   const [error, setError] = useState('');
+const {login, error, isLoading} = useLogin()
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const response = await axios.post('http://localhost:5000/api/login', { email, password });
-      const { token } = response.data;
-      setToken(token);
-      setError('');
-    } catch (err) {
-      setError('Invalid email or password');
-    }
+
+    await login(email, password)
+    // try {
+    //   const response = await axios.post('http://localhost:5000/api/login', { email, password });
+    //   const { token } = response.data;
+    //   setToken(token);
+    //   setError('');
+    // } catch (err) {
+    //   setError('Invalid email or password');
+    // }
   };
 
   return (
@@ -44,8 +48,8 @@ const Login = ({ setToken }) => {
             required
           />
         </div><br /><br />
+        <button  disabled={isLoading} type="submit">Login</button>
         {error && <p className="error">{error}</p>}
-        <button type="submit">Login</button>
       </form><br />
       <p>
         Don't have an account?{' '}
