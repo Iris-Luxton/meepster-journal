@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import { config } from 'dotenv';
 import router from './routers/route.js';
-
+//import noteRoute from './routers/noteRoute';
 
 /** import connection file */
 import connect from './database/connect.js';
@@ -22,8 +22,7 @@ const port = process.env.PORT || 8080;
 
 /** routes */
 app.use('/api', router) /** apis */
-
-
+//app.use('/api/note', noteRoute) /** apis */
 app.get('/', (req, res) => {
     try {
         res.json("Get Request")

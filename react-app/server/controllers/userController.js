@@ -7,17 +7,17 @@ const createToken = (_id) => {
 const secretKey = 'your-secret-key';
 
 
-const getUserByEmailAndPassword = async (email, password) => {
-    const user = await User.findOne({ email });
-    if (!user) {
-      return null;
-    }
-    const passwordMatch = await user.checkPassword(password);
-    if (!passwordMatch) {
-      return null;
-    }
-    return user;
-  };
+// const getUserByEmailAndPassword = async (email, password) => {
+//     const user = await User.findOne({ email });
+//     if (!user) {
+//       return null;
+//     }
+//     const passwordMatch = await user.checkPassword(password);
+//     if (!passwordMatch) {
+//       return null;
+//     }
+//     return user;
+//   };
 
 const register = async (req, res) => {
     const { email, password } = req.body;

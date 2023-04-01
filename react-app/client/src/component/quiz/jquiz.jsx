@@ -11,7 +11,7 @@ const Table = (props) => {
   }, [data]);
 
   const handleDeleteRow = (id) => {
-    console.log(id); // check if id is passed correctly
+    console.log("Delete row running, id is " + id); // check if id is passed correctly
     axios
       .post('http://localhost:5000/api/quiz/delete', { 
         id: id, 
@@ -159,6 +159,7 @@ function Jquiz() {
       setRows(updatedRows);
       console.log(inputdata, "input data what we Enter")
       SetInputdata({word:"", romaji:"", meaning:""});
+      window.location.reload()
     })
     .catch(err => console.log(err));
   }
@@ -166,7 +167,6 @@ function Jquiz() {
   <div className="Jquiz">
       <div>
         <h3>Japanese to be quized </h3>
-        <h3>Attempt to use Axios to handle request</h3>
         <Table data = {rows} />
       </div>
       <div>
@@ -176,6 +176,7 @@ function Jquiz() {
         <br />
         <button onClick={changhandle}>Add It </button>
       </div>
+      
    </div>
   );
 }

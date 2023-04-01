@@ -20,9 +20,9 @@ router.route('/quiz/delete')
 router.route('/quiz/update')
         .post(controller.updateTango)
 /** Questions Routes API */
-router.route('/quiz/questions')
-        .get(controller.getQuestions) /** GET Request */
-        .post(controller.insertQuestions) /** POST Request */
-        .delete(controller.dropQuestions) /** DELETE Request */
+// router.route('/quiz/questions')
+//         .get(controller.getQuestions) /** GET Request */
+//         .post(controller.insertQuestions) /** POST Request */
+//         .delete(controller.dropQuestions) /** DELETE Request */
 
 export default router;

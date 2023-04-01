@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import './quiz.css';
-
+import photo1 from '../../image/photo1.jpg';
+import photo2 from '../../image/photo2.jpg';
 const getItems = async () => {
   const resp = await fetch('http://localhost:5000/api/quiz/items')
   const items = await resp.json();
@@ -44,8 +45,7 @@ function Cquiz() {
   return (
     <div>
       <div>
-        <h3>Chinese Quiz</h3>
-        <h3>Note: data add attempt back end</h3>
+        <h3>Chinese</h3>
         <ul className="content">
           <li>你好 (nǐ hǎo) - Hello</li>
           {items && items.map((item) => {
@@ -59,6 +59,14 @@ function Cquiz() {
           <input name='vocab' id='vocab' placeholder='New Vocab'/>
           <button type='submit'>Submit</button>
         </form>
+      </div>
+      <div className="bottom-wrapper">
+      <div className="bottom-left">
+        <img src={photo1} alt="Cat 1" />
+      </div>
+      <div className="bottom-right">
+        <img src={photo2} alt="Cat 2" />
+      </div>
       </div>
     </div>
   );

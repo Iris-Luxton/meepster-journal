@@ -3,7 +3,8 @@ import { useLogin } from '../hooks/useLogin';
 // import axios from 'axios';
 import './styles/loginForm.css';
 import { Link } from 'react-router-dom';
-
+import photo1 from '../image/photo1.jpg';
+import photo2 from '../image/photo2.jpg';
 const Login = ({ setToken }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -56,6 +57,14 @@ const {login, error, isLoading} = useLogin()
         <Link to="/register" style={{ color: 'blue' }} >Register here</Link>
       </p>
       <br />
+      <div className="bottom-wrapper">
+      <div className="bottom-left">
+        <img src={photo1} alt="Cat 1" />
+      </div>
+      <div className="bottom-right">
+        <img src={photo2} alt="Cat 2" />
+      </div>
+      </div>
     </div>
   );
 };

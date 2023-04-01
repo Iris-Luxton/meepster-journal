@@ -6,10 +6,10 @@ function Quizlink() {
       <div>
       <ul className="content-link">
       <li>
-          <Link className="content-link" to="/quiz/jquiz">Japanese Quiz</Link>
+          <Link className="content-link" to="/quiz/jquiz">Japanese</Link>
         </li>
         <li>
-          <Link className="content-link" to="/quiz/cquiz">Chinese Quiz</Link>
+          <Link className="content-link" to="/quiz/cquiz">Chinese</Link>
         </li>
       </ul>
       </div>

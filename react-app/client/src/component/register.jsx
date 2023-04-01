@@ -4,6 +4,8 @@ import React, { useState } from 'react';
 import { useSignup } from "../hooks/useSignup";
 import './styles/registerForm.css';
 import { Link } from 'react-router-dom';
+import photo1 from '../image/photo1.jpg';
+import photo2 from '../image/photo2.jpg';
 
 const RegisterForm = () => {
   const [email, setEmail] = useState('');
@@ -49,6 +51,14 @@ const RegisterForm = () => {
           Already have an account?{' '}
           <Link to="/login" style={{ color: 'blue' }}>Login here</Link>
         </p>
+        <div className="bottom-wrapper">
+      <div className="bottom-left">
+        <img src={photo1} alt="Cat 1" />
+      </div>
+      <div className="bottom-right">
+        <img src={photo2} alt="Cat 2" />
+      </div>
+      </div>
     </div>
   );
 };

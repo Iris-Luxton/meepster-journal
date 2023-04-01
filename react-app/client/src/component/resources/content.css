@@ -1,8 +1,33 @@
-.content {
-    color: black;
+  
+  .content {
+    height: 100vh; /* set height to full viewport height */
     display: flex;
-    text-align: center;
-    margin-left: 40%;
-    display: inline;
-    padding: 0;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 5%;
   }
+  .content ul {
+    flex-direction: column;
+    list-style: none;
+  }
+  .content a {
+  display: flex;
+  color: black;
+}
+  .bottom-wrapper {
+    display: flex;
+    justify-content: center;
+  }
+  .bottom-left, .bottom-right {
+    position: fixed;
+    bottom: 0;
+    width: 35%;
+    text-align: center;
+  }
+  .bottom-left {
+    left: 0;
+  }
+  .bottom-right {
+    right: 0;
+  }
+  
